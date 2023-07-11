@@ -8,9 +8,10 @@ const init = async () => {
 
         port : 9000,
         host: 'localhost',
-    })
+    });
 
     
+    server.route(routes);
 
     // Hapi.server.routes(routes);
 
