@@ -50,8 +50,7 @@ const addBooksHandler = (request, h) => {
         bookId: id,
         },
         })
-        response.code(201);
-        return response;
+        return response.code(201);
     }else{
 
         // Jika gagal menambahkan buku, kembalikan respons dengan status 500 dan pesan gagal
@@ -59,13 +58,53 @@ const addBooksHandler = (request, h) => {
         status: 'fail',
         message: 'Gagal menambahkan buku',
         })
-        response.code(500);
-        return response;
+        return response.code(400);
+  
     } 
 };
 
+// 2
+const getAllBooksHandler = (request, h) => {
+  return {
+    status: 'success',
+    data: {
+    books: books.map((book) => ({
+      id: book.id,
+      name: book.name,
+      publisher: book.publisher,
+      })),
+    },
+
+  };
+};
+
+// 3
+const getBooksByIdHandler = (request, h) => {
+
+  const { bookId } = request.params;
+
+  const book = books.find((b) => b.id === bookId);
+
+  if (!book) {
+    return h
+      .response({
+        status: 'fail',
+        message: 'Buku tidak ditemukan',
+      })
+      .code(404);
+  }
+
+  return {
+    status: 'success',
+    data: {
+      book,
+    },
+  };
+};
+
+
 module.exports = {
-    addBooksHandler,
+  addBooksHandler, getAllBooksHandler, getBooksByIdHandler,
 }
 
 
