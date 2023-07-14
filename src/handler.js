@@ -102,6 +102,29 @@ const getBooksByIdHandler = (request, h) => {
   };
 };
 
+// 4
+const editBooksByIdHandler = (request, h) => {
+
+  const {bookId} = request.params;
+
+  const {name, year, author, summary, publisher, pageCount, readPage,reading,} = request.payload;
+  const updatedAt = new Date().toISOString();
+
+  const index = notes.findIndex((note) => note.id === id);
+
+  // sampeee siniiii dulu
+  if (!name) {
+    // Jika properti "name" kosong
+    return h
+      .response({
+        status: 'fail',
+        message: 'Gagal menambahkan buku. Mohon isi nama buku',
+      })
+      .code(400);
+  }
+
+};
+
 
 module.exports = {
   addBooksHandler, getAllBooksHandler, getBooksByIdHandler,
