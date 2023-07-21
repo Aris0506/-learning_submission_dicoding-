@@ -4,19 +4,18 @@ const Hapi = require('@hapi/hapi');
 const routes = require('./routes');
 
 const init = async () => {
-    const server = Hapi.server({
+  const server = Hapi.server({
 
-        port : 9000,
-        host: 'localhost',
-    });
+    port: 9000,
+    host: 'localhost',
+  });
 
-    
-    server.route(routes);
+  server.route(routes);
 
-    // Hapi.server.routes(routes);
+  // Hapi.server.routes(routes);
 
-    await server.start();
-    console.log(`server berjalan pada port ${server.info.uri}`);
-}
+  await server.start();
+  console.log(`server berjalan pada port ${server.info.uri}`);
+};
 
 init();
